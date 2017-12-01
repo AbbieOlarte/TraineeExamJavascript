@@ -1,0 +1,167 @@
+﻿<div>
+
+    <h3>JAVASCRIPT</h3>
+    <br /><br />
+
+    <p>1) Write a JavaScript function to compute the value of b^n where n is the exponent and b is the bases. Accept b and n from the user and display the result.</p>
+
+    <input id="showAns" placeholder="Shows Answer" /><br /><br />
+
+    Base: <input id="base" /> <br />
+    Exponent <input id="exponent" /><br /><br />
+    <button id="inputAns">Compute </button><br /><br /><br />
+
+
+    <p>2) Write a JavaScript function that accepts two arguments, a string and a letter and the function will count the number of occurrences of the specified letter within the string.</p>
+    <input id="showNumLet" placeholder="Shows Answer" /><br /><br />
+
+    Word: <input id="Word" /> <br />
+    Letter: <input id="LetterCheck" /><br /><br />
+    <button id="inputNumLet">Show Number of times </button><br /><br /><br />
+
+
+    <p>Write a JavaScript function that generates a string id (specified length) of random alphanumeric characters.  </p>
+    <input id="showAlphaNum" placeholder="Shows Answer" /><br /><br />
+
+    Input Length: <input id="strAlphaNum" type="number" /> <br /><br />
+    <button id="inputAlphaNum">Show generated alphanumeric characters </button><br /><br /><br />
+
+
+    <p>Write a JavaScript function to  get the number of occurrences of each letter in specified string. </p>
+    <input id="showNumOfOcc" placeholder="Shows Answer" /><br /><br />
+
+    Input String: <input id="strNumOfOcc" /> <br /><br />
+    <button id="inputNumOfOcc">Show number of occurrences of each letter </button><br /><br /><br />
+
+
+    <p>Write a JavaScript function to find the first not repeated character.
+        <br />Sample arguments : 'abacddbec'
+        <br />Expected output : 'e' </p>
+    <input id="showFirstOcc" placeholder="Shows Answer" /><br /><br />
+
+    Input String: <input id="strFirstOcc" /> <br /><br />
+    <button id="inputFirstOcc">Show first not repeated character </button><br /><br /><br />
+
+
+
+</div>
+
+<script type="text/javascript">
+
+    var base = 0, exponent = 0, ans = 0, numOfLetter = 0;
+
+    var word, letter;
+
+    document.getElementById("inputAns")
+        .addEventListener("click", function () {
+
+            base = parseInt(document.getElementById("base").value);
+            exponent = parseInt(document.getElementById("exponent").value);
+
+            for (var i = 0; i < exponent; i++) {
+                ans = ans + base;
+            }
+
+            document.getElementById("showAns").value = ans;
+        });
+
+    document.getElementById("inputNumLet")
+        .addEventListener("click", function () {
+
+            word = document.getElementById("Word").value;
+            letter = document.getElementById("LetterCheck").value;
+
+            for (var x = 0; x < word.length; x++) {
+                if (letter == word[x]) {
+                    numOfLetter++;
+                }
+            }
+
+            document.getElementById("showNumLet").value = numOfLetter;
+        });
+    
+
+    document.getElementById("inputAlphaNum")
+        .addEventListener("click", function () {
+
+            var numOfAlphaNum = parseInt(document.getElementById("strAlphaNum").value);
+            var alphanumeric = "1234567890qwertyuiopasdfghjklzxcvbnm", ansAlpha = "";
+
+            if (numOfAlphaNum > 0) {
+
+                for (var i = 0; i < numOfAlphaNum; i++) {
+                ansAlpha = ansAlpha + alphanumeric[Math.floor(Math.random() * alphanumeric.length)];
+                }
+
+                document.getElementById("showAlphaNum").value = ansAlpha;
+
+            } else {
+                document.getElementById("showAlphaNum").value = "Numbers more than 0 only";
+            }
+            
+        });
+
+
+    document.getElementById("inputNumOfOcc")
+        .addEventListener("click", function () {
+
+            var wordForOcc = document.getElementById("strNumOfOcc").value;
+            var colOfLetters = "", occurenceAns = "";
+            var numOcc = 0;
+
+            for (var index = 0; index < wordForOcc.length; index++) {
+                if (!colOfLetters.includes(wordForOcc[index])) {
+                    colOfLetters += wordForOcc[index];
+                }
+            }
+
+            for (var ind = 0; ind < colOfLetters.length; ind++) {
+
+                numOcc = 0;
+
+                for (var indW = 0; indW < wordForOcc.length; indW++) {
+                    if (colOfLetters[ind] == wordForOcc[indW]) {
+                        numOcc++;
+                    }                   
+                }
+
+                occurenceAns += colOfLetters[ind] + ": " + numOcc + " ";
+            }
+
+            document.getElementById("showNumOfOcc").value = occurenceAns;
+
+        });
+
+    document.getElementById("inputFirstOcc")
+        .addEventListener("click", function () {
+
+            var firstOccWord, firstOccAns, checkOcc = "", firstOccCollection = "";
+            var numOfOcc = 0, firstOccIndex = 0;
+            firstOccWord = document.getElementById("strFirstOcc").value;
+
+            for (var index = 0; index < firstOccWord.length; index++) {
+                if (!firstOccCollection.includes(firstOccWord[index])) {
+                    firstOccCollection += firstOccWord[index];
+                }
+            }
+
+            for (var ind = 0; ind < firstOccCollection.length; ind++) {
+                numOfOcc = 0
+                for (var indx = 0; indx < firstOccWord.length; indx++){
+                    if (firstOccCollection[ind] == firstOccWord[indx]){
+                        numOfOcc++;
+                    }                   
+                }
+                if (numOfOcc == 1) {
+                    firstOccAns = firstOccCollection[ind];
+                    break;
+                } else {
+                    firstOccAns = "none";
+                }
+            }
+
+
+            document.getElementById("showFirstOcc").value = firstOccAns;
+        });
+
+</script>
